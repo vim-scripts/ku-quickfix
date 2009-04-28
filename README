@@ -1,0 +1,15 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2622
+
+*ku-quickfix* is a source for |ku| to deal with |quickfix|.  You can choose
+one from many files in the current quickfix list and do some action on it.
+
+
+Requirements:
+- Vim 7.2 or later
+- |ku| 0.2.0 or later (vimscript#2337)
+
+Latest version:
+http://github.com/kana/vim-ku-quickfix
+
+Document in HTML format:
+http://kana.github.com/config/vim/ku-quickfix.html
