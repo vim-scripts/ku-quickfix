@@ -1,5 +1,5 @@
 " ku source: quickfix
-" Version: 0.1.0
+" Version: 0.1.1
 " Copyright (C) 2008-2009 kana <http://whileimautomaton.net/>
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
@@ -106,16 +106,15 @@ endfunction
 
 " Misc.  "{{{1
 function! s:open(bang, item)  "{{{2
-  if a:item._ku_completed_p
+  if a:item.ku__completed_p
     let original_switchbuf = &switchbuf
       let &switchbuf = ''
-      execute a:item.ku_quickfix_bufnr 'buffer'.a:bang
-      execute 'cc' a:item.ku_quickfix_ccnr
+      execute 'cc'.a:bang a:item.ku_quickfix_ccnr
     let &switchbuf = original_switchbuf
+    return 0
   else
-    echoerr 'No such file:' string(a:item.word)
+    return 'No such file: ' . string(a:item.word)
   endif
-  return
 endfunction
 
 
@@ -123,14 +122,12 @@ endfunction
 
 " Actions  "{{{2
 function! ku#quickfix#action_open(item)  "{{{3
-  call s:open('', a:item)
-  return
+  return s:open('', a:item)
 endfunction
 
 
 function! ku#quickfix#action_open_x(item)  "{{{3
-  call s:open('!', a:item)
-  return
+  return s:open('!', a:item)
 endfunction
 
 
